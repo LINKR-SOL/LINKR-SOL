@@ -1,11 +1,9 @@
 "use client";
 import Link from "next/link";
 import {useState} from "react";
-import {useFeed} from "@/lib/hooks/useTerminal";
 import {useNews} from "@/lib/hooks/useNews";
 import {useVaults,useVaultConfig,useVaultEpochs} from "@/lib/hooks/useApi";
 import {ArrowRight,ArrowUpRight,X} from "@/components/ui/icons";
-import {BrandMark} from "@/components/site/brand";
 import {RewardRibbon} from "@/components/launch/reward-ribbon";
 import {TokenIcon} from "@/components/token-icon";
 import {withAdded,withRemoved,evenWeights} from "@/lib/launch/options";
@@ -15,24 +13,10 @@ import {Hero,StoryArt} from "./reference-hero";
 import {ConnectionEngine} from "./connection-engine";
 import {MarketChart} from "./chart";
 import {explorerTxUrl} from "@/lib/solana/cluster";
-import {usdOf,formatUsd} from "@/lib/format";
+import {usdOf} from "@/lib/format";
+import {MarketGallery,StateMessage} from "./market-gallery";
+export {MarketGallery,StateMessage};
 const colors=["#0769ff","#6099f4","#98bbec","#ff952a","#446eac","#b1c6e4"];
-export function StateMessage({title,body,retry}:{title:string;body:string;retry?:()=>void}){return <div className="lk-state"><span className="state-orbit"><BrandMark size={44}/></span><div><h3>{title}</h3><p>{body}</p>{retry&&<button onClick={retry} className="text-action">Try again <ArrowRight size={15}/></button>}</div></div>}
-/** A coin's own image on its market tile, over the glass; the ticker when it has none or the image fails to load.
- *  A plain <img>: logos come from any host (Vercel Blob, IPFS), which next/image isn't configured for. */
-// eslint-disable-next-line @next/next/no-img-element
-function TileLogo({logo,symbol}:{logo:string|null;symbol:string}){const[failed,setFailed]=useState(false);if(logo&&!failed)return <img className="market-logo" src={logo} alt="" width={76} height={76} loading="lazy" decoding="async" onError={()=>setFailed(true)}/>;return <span>{symbol.slice(0,5)||"LINK"}</span>}
-export function MarketGallery({full=false}:{full?:boolean}){
- const[filter,setFilter]=useState<"linkr"|"all">("linkr");const[query,setQuery]=useState("");const feed=useFeed("marketCap",24);const vaults=useVaults();
- const launches=feed.data?.data?.launches??[];const rows=(vaults.data?.vaults??[]).filter(v=>v.status==="active").map(v=>({id:v.address,name:v.launch?.name??"LINKR market",symbol:v.launch?.symbol??"",href:`/vaults/${v.address}`,logo:v.launch?.logo??null,tags:v.basket.map(b=>b.symbol),type:"LINKR rewards",value:v.epochCount,label:"published payouts"}));
- const others=launches.map(v=>({id:v.mint,name:v.name,symbol:v.symbol,logo:v.logo,href:v.vault?`/vaults/${v.vault}`:`https://www.stonkfun.xyz/token/${v.mint}`,tags:[v.quote.symbol],type:v.causaVaulted?"LINKR rewards":"StonkFun market",value:v.volume24hUsd,label:"24h volume"}));
- const list=(filter==="linkr"?rows:others).filter(v=>(v.name+" "+v.symbol+" "+v.tags.join(" ")).toLowerCase().includes(query.toLowerCase()));const loading=filter==="linkr"?vaults.isLoading:feed.isLoading;
- // a grid that wraps into rows: every market on the Markets page, the first two rows on the home page
- const shown=full?list:list.slice(0,8);const failed=filter==="linkr"?!!vaults.error:!!feed.error||!!feed.data?.error;
- return <MotionSurface className={`lk-section gallery-section ${full?"gallery-full":""}`} id="markets"><div className="section-heading"><div><span className="eyebrow">01 / CONNECTED MARKETS</span><h2>Find your <em>point of view.</em></h2></div><p>A coin with a story.<br/>A basket with a purpose.</p></div><div className="gallery-toolbar"><div className="segmented"><button aria-pressed={filter==="linkr"} onClick={()=>setFilter("linkr")}>LINKR rewards</button><button aria-pressed={filter==="all"} onClick={()=>setFilter("all")}>All StonkFun</button></div>{full?<input type="search" value={query} onChange={e=>setQuery(e.target.value)} aria-label="Search markets" placeholder="Search markets or stocks"/>:<Link href="/vaults" className="text-action">All markets <ArrowUpRight size={16}/></Link>}</div>
- {loading?<div className="market-grid">{[0,1,2,3].map(i=><div className="skeleton market-skeleton" key={i}/>)}</div>:list.length?<><div className="market-grid">{shown.map((v,i)=><a className={`market-tile glass tile-${i%3}`} href={v.href} key={v.id} target={v.href.startsWith("https")?"_blank":undefined} rel="noreferrer"><div className="market-object"><div/><div/><TileLogo logo={v.logo} symbol={v.symbol}/></div><div className="market-tile-head"><small>{v.type}</small><ArrowUpRight size={18}/></div><h3>{v.name}</h3><div className="stock-tags">{v.tags.slice(0,4).map(t=><span key={t}>{t}</span>)}</div><div className="market-tile-bottom"><span>{v.label}</span><strong>{v.value===null?"Unavailable":filter==="all"?formatUsd(v.value):v.value}</strong></div></a>)}</div><div className="rail-controls"><span>{full?`${list.length} market${list.length===1?"":"s"}`:"Choose an idea. Follow the connection."}</span>{!full&&list.length>shown.length&&<Link href="/vaults" className="text-action">View all {list.length} markets <ArrowRight size={15}/></Link>}</div></>:<StateMessage title={failed?"Markets are taking a moment.":query?"No matching markets.":"The next connection starts here."} body={failed?"The market service is unavailable. News and the rest of LINKR remain available.":filter==="linkr"?"Active LINKR markets will appear here after their vaults are connected.":"No markets match this view."} retry={()=>{if(filter==="linkr")void vaults.refetch();else void feed.refetch()}}/>}
- {filter==="all"&&<p className="data-note">StonkFun discovery. Stock rewards apply only to markets explicitly marked LINKR.</p>}{feed.data?.stale&&filter==="all"&&<p className="data-note">Showing the last available market snapshot.</p>}</MotionSurface>
-}
 export function BasketComposer(){
  const config=useVaultConfig();const[basket,setBasket]=useState<{token:TokenJson;weight:number}[]>([]);const[query,setQuery]=useState("");const assets=config.data?.basketTokens??[];const filtered=assets.filter(t=>(t.symbol+" "+t.name).toLowerCase().includes(query.toLowerCase()));
  const href="/launch?basket="+encodeURIComponent(JSON.stringify(basket.map(b=>({mint:b.token.mint,weight:b.weight}))));

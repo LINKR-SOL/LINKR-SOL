@@ -1,4 +1,4 @@
 import type {Metadata} from "next";
-import {MarketGallery} from "@/components/linkr/landing";
+import {MarketGallery} from "@/components/linkr/market-gallery";
 export const metadata:Metadata={title:"Markets"};
 export default function MarketsPage(){return <MarketGallery full/>}

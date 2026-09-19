@@ -1190,7 +1190,58 @@ html[data-theme="dark"] .venue-link{border:1px solid #344762;background:#151b25;
 html[data-theme="dark"] .venue-link:hover{background:#0967f6;border-color:#0967f6;color:#ffffff}
 html[data-theme="dark"] .venue-link:active{background:#0558d6;border-color:#0558d6;color:#ffffff}
 html[data-theme="dark"] .venue-link:focus-visible{outline:2px solid #0967f6;outline-offset:2px}
-html[data-theme="dark"] .market-logo{background:#15191f;border:2px solid #ffffff1f;box-shadow:0 12px 26px #0102088a,0 0 0 6px #1b212a59}/*  app/hero-stage.css  */
+html[data-theme="dark"] .market-logo{background:#15191f;border:2px solid #ffffff1f;box-shadow:0 12px 26px #0102088a,0 0 0 6px #1b212a59}
+html[data-theme="dark"] .segmented button small{color:#7e8794}
+html[data-theme="dark"] .segmented button[aria-pressed="true"] small{color:#639dff}
+html[data-theme="dark"] .mk-search{border:1px solid #323e4d;background:#1b212ab3;color:#8b95a2}
+html[data-theme="dark"] .mk-search:focus-within,html[data-theme="dark"] .mk-sort:focus-within{border-color:#8fb4e6;box-shadow:0 0 0 4px #0967f614}
+html[data-theme="dark"] .mk-search input{border:0;background:transparent;outline:none;color:#c2cdda}
+html[data-theme="dark"] .mk-search input::placeholder{color:#7c8592}
+html[data-theme="dark"] .mk-search button{color:#8e97a4}
+html[data-theme="dark"] .mk-search button:hover{background:#151b25;color:#639dff}
+html[data-theme="dark"] .mk-sort{border:1px solid #323e4d;background:#1b212ab3;color:#c2cdda}
+html[data-theme="dark"] .mk-sort>span{color:#8b95a2}
+html[data-theme="dark"] .mk-sort select{border:0;background:transparent;color:#c3cdda;outline:none}
+html[data-theme="dark"] .mk-sort>svg{color:#8e97a4}
+html[data-theme="dark"] .mk-filters{border:1px solid #2e343c;background:#1b212a80}
+html[data-theme="dark"] .mk-filter-label{color:#8b95a2}
+html[data-theme="dark"] .mk-chip{border:1px solid #303c4a;background:#1b212a;color:#7ea1cf}
+html[data-theme="dark"] .mk-chip small{color:#7e8794}
+html[data-theme="dark"] .mk-chip:hover{border-color:#8fb4e6}
+html[data-theme="dark"] .mk-chip[aria-pressed="true"]{border-color:#0967f6;background:#141a24;color:#629dff;box-shadow:inset 0 0 0 1px #0967f6}
+html[data-theme="dark"] .mk-chip[aria-pressed="true"] small{color:#629dff}
+html[data-theme="dark"] .mk-chip:focus-visible{outline:2px solid #0967f6;outline-offset:2px}
+html[data-theme="dark"] .mk-results{color:#8b95a2}
+html[data-theme="dark"] .mk-summary{border:1px solid #2e343c;background:#1b212a99}
+html[data-theme="dark"] .mk-summary>div{border-left:1px solid #2e343c}
+html[data-theme="dark"] .mk-summary>div:first-child{border-left:0}
+html[data-theme="dark"] .mk-summary dt{color:#8b95a2}
+html[data-theme="dark"] .mk-summary dd{color:#d4deec}
+html[data-theme="dark"] .mk-tile:hover{box-shadow:0 16px 34px #437dc41f}
+html[data-theme="dark"] .mk-tile:focus-visible{outline:2px solid #0967f6;outline-offset:3px}
+html[data-theme="dark"] .mk-coin{background:linear-gradient(135deg,#2a86ff,#0a4fc9);box-shadow:0 8px 18px #0967f62b,inset 0 0 0 1px #ffffff0f}
+html[data-theme="dark"] .mk-coin-fallback{color:#ffffff}
+html[data-theme="dark"] .mk-id h3{color:#d4deec}
+html[data-theme="dark"] .mk-id small{color:#8b95a2}
+html[data-theme="dark"] .mk-go{color:#747d8a}
+html[data-theme="dark"] .mk-tile:hover .mk-go{color:#639dff}
+html[data-theme="dark"] .mk-label{color:#8b95a2}
+html[data-theme="dark"] .mk-stocks li{border:1px solid #2f3742;background:#1b212a;color:#80a1cd}
+html[data-theme="dark"] .mk-stocks em{color:#8b95a2}
+html[data-theme="dark"] .mk-stocks .mk-more{color:#97a0ad}
+html[data-theme="dark"] .mk-badge{background:#141a24;color:#629dff}
+html[data-theme="dark"] .mk-stats{border-top:1px solid #2f3740}
+html[data-theme="dark"] .mk-stats dt{color:#8b95a2}
+html[data-theme="dark"] .mk-stats dd{color:#d4deec}
+html[data-theme="dark"] .mk-foot{color:#8b95a2}
+html[data-theme="dark"] .mk-live{color:#6fa1df}
+html[data-theme="dark"] .mk-live i{background:#20a978;box-shadow:0 0 0 3px #20a97822}
+html[data-theme="dark"] .mk-curve-bar{background:#171d25}
+html[data-theme="dark"] .mk-curve-bar>span{background:linear-gradient(90deg,#2687ff,#0061ef)}
+@media (max-width:800px){
+html[data-theme="dark"] .mk-summary>div:nth-child(3){border-left:0}}
+@media (max-width:800px){
+html[data-theme="dark"] .mk-summary>div:nth-child(n+3){border-top:1px solid #2e343c}}/*  app/hero-stage.css  */
 html[data-theme="dark"] .reference-hero{background-image:linear-gradient(90deg,#26374b15 1px,transparent 1px),linear-gradient(#26374b0c 1px,transparent 1px);background-size:25% 100%,100% 100px}
 html[data-theme="dark"] .ref-eyebrow{color:#838c99}
 html[data-theme="dark"] .ref-copy-rule{background:#43536b}
