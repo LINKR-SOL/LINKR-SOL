@@ -7,7 +7,8 @@ import { Skeleton } from "@/components/ui/primitives";
 export function VaultSkeleton() {
   return (
     <div className="space-y-6" aria-busy="true" aria-label="Loading the coin">
-      <div className="flex flex-wrap items-start justify-between gap-3">
+      <div className="flex flex-wrap items-start gap-4">
+        <Skeleton className="h-14 w-14 shrink-0 rounded-2xl" />
         <div className="min-w-0 flex-1 space-y-3">
           <Skeleton className="h-9 w-[min(380px,70%)] rounded-xl" />
           <div className="flex flex-wrap items-center gap-2">

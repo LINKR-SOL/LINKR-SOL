@@ -19,7 +19,7 @@ import type { EpochJson, TokenJson } from "@/lib/api-types";
 import { ArrowRight, ArrowUpRight } from "@/components/ui/icons";
 import { TokenIcon } from "@/components/token-icon";
 import { AmountInput, Badge, Button, Callout, Card, EmptyState, Stat, cx } from "@/components/ui/primitives";
-import { vaultBadge } from "./vaults-list";
+import { CoinTile, vaultBadge } from "./vaults-list";
 import { VaultSkeleton } from "./vault-skeleton";
 import { Info } from "@/components/ui/info";
 import { formatClock } from "@/lib/format";
@@ -143,7 +143,9 @@ export function VaultPanel({ address }: { address: string }) {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
+        <div className="flex min-w-0 items-start gap-4">
+          <CoinTile symbol={vault.launch?.symbol ?? "?"} pending={vault.status === "pending"} logo={vault.launch?.logo} size={56} />
+          <div className="min-w-0">
           <h1 className="text-2xl font-semibold tracking-tight">{vault.launch?.symbol ? `${vault.launch.symbol} dividends` : "Dividend vault"}</h1>
           <div className="mt-1 text-sm text-muted flex flex-wrap items-center gap-2">
             <a href={explorerAddressUrl(vault.address)} target="_blank" rel="noreferrer" className="num hover:text-text">
@@ -159,6 +161,7 @@ export function VaultPanel({ address }: { address: string }) {
             <span>{timeAgo(vault.createdAt)}</span>
             {vaultBadge(vault)}
             {vault.autoClaim && <Badge tone="success">airdrops</Badge>}
+          </div>
           </div>
         </div>
         <Link href={"/claims" as Route} className="inline-flex h-10 items-center rounded-lg bg-surface-2 border border-border px-4 text-sm font-medium hover:border-border-strong">

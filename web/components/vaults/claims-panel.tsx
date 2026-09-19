@@ -317,7 +317,8 @@ export function ClaimsPanel() {
           <Card
             key={v.vault.address}
             title={
-              <Link href={`/vaults/${v.vault.address}` as Route} className="hover:underline">
+              <Link href={`/vaults/${v.vault.address}` as Route} className="inline-flex items-center gap-2.5 hover:underline">
+                <CoinTile symbol={v.vault.launch?.symbol ?? "?"} pending={false} logo={v.vault.launch?.logo} size={28} />
                 {v.vault.launch?.symbol ?? shortAddress(v.vault.address)} dividends
               </Link>
             }
