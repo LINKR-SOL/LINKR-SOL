@@ -30,7 +30,9 @@ LINKR launches coins on StonkFun around an idea, and pays their holders in the t
 
 <br>
 
-**$LINKR** · launching soon on StonkFun. Its contract address will be posted on [linkrfun.xyz](https://linkrfun.xyz) and [@Linkrfun](https://x.com/Linkrfun).
+**$LINKR** is live on StonkFun · [**Buy on StonkFun**](https://www.stonkfun.xyz/token/9yTuQtzLHxFzdqKuuSiR2e9gYVYutG7nByVittYeVYdW)
+
+CA: `9yTuQtzLHxFzdqKuuSiR2e9gYVYutG7nByVittYeVYdW`
 
 </div>
 
@@ -373,7 +375,7 @@ to run before sharing the link.
 | `LAUNCHLAB_PLATFORM_ID`, `LAUNCHLAB_CURVE_RULE_ID`, `LAUNCHLAB_RAISE`, `STONKFUN_API_ORIGIN` | LaunchLab platform (devnet: the one `platform:devnet` created; mainnet: defaults to StonkFun standard), optional curve rule, devnet raise target, StonkFun API origin |
 | `JUPITER_API_KEY`, `PINATA_JWT`, `BLOB_READ_WRITE_TOKEN`, `OPENROUTER_TOKEN` | optional integrations |
 | `NEXT_PUBLIC_SITE_URL` | public origin |
-| `NEXT_PUBLIC_LINKR_MINT` | $LINKR's contract address once it launches: switches on the navbar ticker, its StonkFun link and the hero's copyable address |
+| `NEXT_PUBLIC_LINKR_MINT` | overrides $LINKR's contract address (set in `web/lib/token.ts`) for the navbar ticker, its StonkFun link and the hero's copyable address |
 | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_WEBHOOK_SECRET`, `TELEGRAM_WALLET_SECRET` | optional Telegram launch bot: @BotFather token, webhook secret, and the secret every user's bot wallet is derived from — back it up like the keeper key |
 
 </details>
@@ -455,7 +457,7 @@ trust entirely and is the planned upgrade, once the program is rebuilt to read L
 - [ ] Independent security audit · legal review of stock distributions
 - [ ] Program mode on mainnet (≈ 2.1 SOL deposit)
 - [ ] Post-graduation creator fees on the CPMM pool (confirm with StonkFun) · trade stream for the home tape
-- [ ] $LINKR launch on StonkFun
+- [x] $LINKR launch on StonkFun
 
 <br>
 
@@ -475,7 +477,7 @@ linked to the market it moves.
 | **Colour** | Mineral white `#F6F9FD` and ink `#102440`, with cobalt `#0967F6` as the one accent and a warm signal `#FF952A` used sparingly. |
 | **Surfaces** | Frosted glass panels, soft cobalt light, hairline borders. |
 | **Icons** | LINKR's own line glyphs ([`components/ui/icons.tsx`](web/components/ui/icons.tsx)); the X and GitHub marks come from Phosphor. |
-| **Coin** | **$LINKR**, launching on StonkFun. Its address goes in `NEXT_PUBLIC_LINKR_MINT`. |
+| **Coin** | **$LINKR** on StonkFun: `9yTuQtzLHxFzdqKuuSiR2e9gYVYutG7nByVittYeVYdW` |
 
 The vector mark is [`web/app/icon.svg`](web/app/icon.svg) (and `BrandMark` in [`components/site/brand.tsx`](web/components/site/brand.tsx));
 the glass render and the thesis artwork are in [`web/public/brand/`](web/public/brand/).

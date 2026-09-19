@@ -212,8 +212,7 @@ market starts with a reason, and LINKR gives that reason a coin, linked to the s
 - **The mark** is two open, interlocking links in cobalt glass with one warm edge: two ideas, connected. The vector
   lives in `web/app/icon.svg` (and `BrandMark` in `web/components/site/brand.tsx`); the glass render is
   `web/public/brand/linkr-original.png`.
-- **The coin is `$LINKR`**, launching on StonkFun. Its address goes in `NEXT_PUBLIC_LINKR_MINT`; until then the site
-  shows "launching soon".
+- **The coin is `$LINKR`** on StonkFun: `9yTuQtzLHxFzdqKuuSiR2e9gYVYutG7nByVittYeVYdW` ([buy](https://www.stonkfun.xyz/token/9yTuQtzLHxFzdqKuuSiR2e9gYVYutG7nByVittYeVYdW)).
 
 Written **LINKR** everywhere, in body copy too. On-chain identifiers keep the project's first name, CAUSA (the
 `causa_vault` program, the `causa:v1:` memo prefix, key-derivation seeds): renaming them would move every vault to a
@@ -409,7 +408,7 @@ link preview.
 | Mainnet | **Live, custodial**: StonkFun forwards fees; first real payouts swapped through Jupiter and airdropped to holders on 19 Sep 2026 |
 | Independent audit | Not started; brief in `AUDIT-CHECKLIST.md` |
 | Legal review | Not started |
-| $LINKR | Not launched; set `NEXT_PUBLIC_LINKR_MINT` when it is. The navbar ticker and the hero's address show "launching soon" until then |
+| $LINKR | Live on StonkFun: `9yTuQtzLHxFzdqKuuSiR2e9gYVYutG7nByVittYeVYdW` |
 
 ---
 
