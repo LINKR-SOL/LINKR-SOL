@@ -16,4 +16,6 @@ export const BRAND = {
   x: "https://x.com/Linkrfun",
   xHandle: "@Linkrfun",
   github: "https://github.com/LINKR-SOL/LINKR-SOL",
+  /** the Telegram bot that launches tokens from a chat */
+  telegramBot: "https://web.telegram.org/k/#@linkrfun_bot",
 } as const;

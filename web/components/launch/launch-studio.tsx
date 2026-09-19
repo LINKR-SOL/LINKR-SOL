@@ -25,7 +25,8 @@ export function LaunchSculpture() {
       <div className="studio-orbit orbit-back" aria-hidden="true" />
       <motion.div className="studio-object" style={{ rotateX, rotateY }}>
         <div className="studio-object-float">
-          <Image src="/brand/launch-chain.png" alt="" width={1024} height={1024} sizes="(max-width: 800px) 85vw, 42vw" preload />
+          <Image className="theme-light-only" src="/brand/launch-chain.png" alt="" width={1024} height={1024} sizes="(max-width: 800px) 85vw, 42vw" preload />
+          <Image className="theme-dark-only" src="/brand/launch-chain-dark.png" alt="" width={1024} height={1024} sizes="(max-width: 800px) 85vw, 42vw" />
         </div>
       </motion.div>
       <div className="studio-orbit orbit-front" aria-hidden="true"><i /></div>

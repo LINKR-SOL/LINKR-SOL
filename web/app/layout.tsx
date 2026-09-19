@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { BRAND } from "@/lib/brand";
+import { THEME_SCRIPT } from "@/lib/theme";
 import { Manrope } from "next/font/google";
 import "@solana/wallet-adapter-react-ui/styles.css";
 import "./globals.css";
 import "./multi.css";
 import "./cinematic.css";
 import "./linkr.css";
+import "./theme-dark.generated.css";
+import "./theme-dark.css";
 import { Providers } from "./providers";
 import { SiteNav } from "@/components/site/site-nav";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -37,11 +40,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={manrope.variable}
-    >
+    // The theme script sets data-theme before React hydrates, so the attribute can legitimately differ from the server's.
+    <html lang="en" className={manrope.variable} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <noscript>
           <style>{`.reveal,.reveal-stagger>*{opacity:1!important;transform:none!important}`}</style>
         </noscript>

@@ -1,4 +1,4 @@
-import { GithubLogo, XLogo } from "@phosphor-icons/react/ssr";
+import { GithubLogo, TelegramLogo, XLogo } from "@phosphor-icons/react/ssr";
 import { ArrowUpRight } from "@/components/ui/icons";
 import { BRAND } from "@/lib/brand";
 import { COIN_URL, TOKEN, TOKEN_IS_LIVE } from "@/lib/token";
@@ -17,6 +17,18 @@ export function LinkrTicker({ className = "" }: { className?: string }) {
     <a className={`linkr-ticker ${className}`} href={COIN_URL} target="_blank" rel="noopener noreferrer" aria-label={`$${TOKEN.symbol} on StonkFun`}>
       <i aria-hidden="true" />${TOKEN.symbol}
       <ArrowUpRight size={13} />
+    </a>
+  );
+}
+
+/** Launch a token from the Telegram bot: the navbar's one filled button, and a full-width row in the small-screen menu. */
+export function TelegramLaunch({ className = "", onClick }: { className?: string; onClick?: () => void }) {
+  return (
+    <a className={`tg-launch ${className}`} href={BRAND.telegramBot} target="_blank" rel="noopener noreferrer" title={`Launch a token with the ${BRAND.name} Telegram bot`} onClick={onClick}>
+      <TelegramLogo size={18} weight="regular" aria-hidden="true" />
+      <span className="tg-launch-label">
+        Launch token<span className="tg-launch-tail"> from Telegram</span>
+      </span>
     </a>
   );
 }

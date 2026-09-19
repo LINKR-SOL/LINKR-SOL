@@ -1,0 +1,41 @@
+/* Dark theme: switching machinery and hand-tuned rules. The bulk of the dark palette is generated from the light
+   stylesheets into theme-dark.generated.css (scripts/dark-theme.mjs); what's here is where a mapped colour isn't
+   enough. Light is the default; dark applies under <html data-theme="dark">. */
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  /* A surface painted with --ink stays an ink ground in the dark theme, where --ink itself is a text colour. */
+  --ink-ground: #1b2a40;
+}
+
+/* While the theme switches, no element runs its own colour transition. */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+}
+
+/* The new theme spreads out from the toggle as a circle (the toggle sets --theme-x/y/r). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  animation: theme-reveal 480ms cubic-bezier(0.22, 0.72, 0.24, 1);
+}
+@keyframes theme-reveal {
+  from { clip-path: circle(0 at var(--theme-x, 50%) var(--theme-y, 0)); }
+  to { clip-path: circle(var(--theme-r, 150%) at var(--theme-x, 50%) var(--theme-y, 0)); }
+}
+
+/* Artwork drawn for one theme: the other theme's copy is hidden (and, being lazy, never loads). */
+html:not([data-theme="dark"]) .theme-dark-only,
+html[data-theme="dark"] .theme-light-only {
+  display: none !important;
+}
+
+/* The launch studio's chain: the light artwork multiplies into the page; the dark one is already cut out. */
+html[data-theme="dark"] .studio-object {
+  mix-blend-mode: normal;
+}

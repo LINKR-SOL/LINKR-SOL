@@ -193,6 +193,21 @@ a.linkr-ticker:hover{border-color:#8fb4e6;color:#0967f6}
 .linkr-socials a:hover{background:#e7f0ff;color:#0967f6}
 .linkr-ticker:focus-visible,.linkr-socials a:focus-visible{outline:2px solid #0967f6;outline-offset:2px}
 .mobile-extras{display:none}
+/* Launch from Telegram: the navbar's one filled button. Its label shortens as the bar narrows, then it moves into the menu. */
+.tg-launch{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:43px;padding:0 17px 0 14px;border-radius:13px;background:var(--accent-cta);color:var(--on-accent);font-size:12px;font-weight:650;letter-spacing:-.01em;white-space:nowrap;box-shadow:inset 0 1px 0 #ffffff47,0 6px 18px #0967f633;transition:background .18s var(--ease-out),box-shadow .18s var(--ease-out),transform .12s var(--ease-out)}
+.tg-launch:hover{background:color-mix(in srgb,var(--accent-cta),#000 12%);box-shadow:inset 0 1px 0 #ffffff47,0 8px 22px #0967f64d}
+.tg-launch:active{transform:scale(.97)}
+.tg-launch:focus-visible{outline:2px solid var(--accent-cta);outline-offset:3px}
+.tg-launch svg{flex-shrink:0}
+.mobile-telegram{display:none!important}
+@media(max-width:1360px){.tg-launch-tail{display:none}}
+@media(max-width:1200px){.tg-launch{width:43px;padding:0}.tg-launch-label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}}
+@media(max-width:800px){.lk-links>a.mobile-telegram{display:flex!important;width:auto;height:48px;margin:8px 8px 4px;padding:0 20px;font-size:13px;color:var(--on-accent)}.lk-links>a.mobile-telegram:hover{color:var(--on-accent)}.mobile-telegram .tg-launch-label{position:static;width:auto;height:auto;overflow:visible;clip-path:none}.mobile-telegram .tg-launch-tail{display:inline}}
+@media(prefers-reduced-motion:reduce){.tg-launch{transition:none}.tg-launch:active{transform:none}}
+.theme-toggle{display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;border-radius:10px;background:transparent;color:#3d5575;flex-shrink:0;transition:background .2s,color .2s}
+.theme-toggle:hover{background:#e7f0ff;color:#0967f6}.theme-toggle:active{transform:scale(.94)}
+.theme-toggle:focus-visible{outline:2px solid #0967f6;outline-offset:2px}
+.theme-toggle-icon{grid-area:1/1;display:grid;place-items:center}.theme-toggle-icon[data-shown="false"]{display:none}
 @media(max-width:1100px){.lk-nav-actions .linkr-socials{display:none}}
 @media(max-width:800px){.nav-extra{display:none!important}.lk-links.is-open .mobile-extras{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:6px;padding:14px 20px 6px;border-top:1px solid #dfe9f6}.mobile-extras .linkr-socials a{width:44px;height:44px}}
 @media(prefers-reduced-motion:reduce){.linkr-ticker,.linkr-socials a{transition:none}}
