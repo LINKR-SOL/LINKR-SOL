@@ -22,7 +22,7 @@ LINKR turns a live catalyst into a **StonkFun coin whose holders are paid in tok
 - The vault converts the fees into the basket and pays them out to holders, **pro rata by time-weighted
   balance**, in Merkle epochs anyone can recompute.
 - **0% platform fee.** Every harvested fee goes to holders.
-- Live on Solana mainnet at **linkrfun.xyz** as an unaudited beta. Open source, GPL-3.0.
+- Live on Solana mainnet at **linkrfun.xyz** custodial and unaudited. Open source, GPL-3.0.
 
 ---
 
@@ -179,7 +179,7 @@ LINKR runs vaults in one of two modes; the site says which.
 
 - **Custodial (current).** Each vault is a wallet only the keeper can reconstruct. Between harvest and delivery
   LINKR holds the fees and the stock. Every payout's root is committed on-chain and every leaf is public, so a
-  wrong payout is provable — but not prevented — by code. This is what the beta notice on every page is about.
+  wrong payout is provable — but not prevented — by code. This is what the custodial notice is about.
 - **Program.** The `causa_vault` program owns every vault and enforces the accounting: measured swaps, Merkle
   claims, review and claim windows, nobody can move funds outside the rules. It costs a ≈ 2.1 SOL refundable
   deposit to deploy and is the upgrade path once the product has earned it.
@@ -343,7 +343,7 @@ link preview.
 
 **X / Twitter bio (160 char):**
 > Every market starts with a reason. Launch a coin, hold it, earn tokenised stocks. On Solana, 0% fee. Open
-> source. Unaudited beta.
+> source. Custodial, unaudited.
 
 **Telegram bot (@linkrfun_bot):** its name, description and short description are set by
 `web/scripts/telegram-setup.ts`.
@@ -380,7 +380,7 @@ link preview.
 2. **Never** state or imply a return, yield, APY or "passive income" from holding.
 3. **Never** describe LINKR as issuing or backing the equities; it distributes tokens issued by third parties.
 4. **Never** claim an audit or trustlessness that has not happened; say **custodial** while it is custodial.
-5. **Always** carry the beta notice wherever a user could be moved to spend.
+5. **Always** carry the custodial / unaudited notice wherever a user could be moved to spend.
 6. **Always** describe payouts as *distributions of creator fees*, sourced from trading volume.
 7. Historical figures are historical. Never annualise them.
 
@@ -406,7 +406,7 @@ link preview.
 | Launch studio, markets and coin pages, portfolio, newswire, Telegram bot | Built |
 | Custodial keeper (quote intake, Jupiter swaps, epochs, on-chain memo, deliveries, signed actions) | Built; verified end-to-end on devnet against LaunchLab (SOL-quoted; token-quoted intake written, untested on chain) |
 | `causa_vault` program (program mode) | Built; LiteSVM lifecycle test; deployed on devnet — still reads pump.fun's curve, so program mode is deferred until a LaunchLab-aware build |
-| Mainnet | **Live, custodial, beta**: StonkFun forwards fees; first real payouts swapped through Jupiter and airdropped to holders on 19 Sep 2026 |
+| Mainnet | **Live, custodial**: StonkFun forwards fees; first real payouts swapped through Jupiter and airdropped to holders on 19 Sep 2026 |
 | Independent audit | Not started; brief in `AUDIT-CHECKLIST.md` |
 | Legal review | Not started |
 | $LINKR | Not launched; set `NEXT_PUBLIC_LINKR_MINT` when it is. The navbar ticker and the hero's address show "launching soon" until then |

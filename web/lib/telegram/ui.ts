@@ -1,7 +1,7 @@
 import { InlineKeyboard } from "grammy";
 import type { TelegramDraftDoc, TelegramDraftStep } from "../db/types";
 import { coinUrl } from "../launchlab/ids";
-import { CREATOR_FEE_PCT, fmtDuration } from "../launch/options";
+import { fmtDuration } from "../launch/options";
 import { siteUrl } from "./config";
 
 /**
@@ -20,7 +20,7 @@ export const shortAddr = (a: string, n = 4) => (a.length > 2 * n + 1 ? `${a.slic
 
 export const HTML = { parse_mode: "HTML" as const, link_preview_options: { is_disabled: true } };
 
-export const BETA_NOTE = "<i>Beta. Unaudited and custodial, so start with small amounts.</i>";
+export const RISK_NOTE = "<i>Unaudited and custodial, so start with small amounts.</i>";
 
 /* ---------------------------------------------------------------- buttons */
 
@@ -132,7 +132,7 @@ export function liveCaption(d: TelegramDraftDoc): string {
     `🎉 <b>$${esc(d.symbol ?? "")} is live</b>`,
     `${esc(d.name ?? "")} is trading on StonkFun.`,
     "",
-    `Every trade now pays ${CREATOR_FEE_PCT}% into its vault. The vault buys ${basketNames(d)} and pays holders${d.epochLength ? ` every ${fmtDuration(d.epochLength)}` : ""}, by how much and how long they hold.`,
+    `Its trading fees now buy ${basketNames(d)} for its holders${d.epochLength ? `, every ${fmtDuration(d.epochLength)}` : ""}, weighted by how much and how long they hold.`,
     "📦 Holders don't claim anything: their stocks are airdropped to their wallets after every payout.",
     "",
     code(d.mint ?? ""),
@@ -159,12 +159,12 @@ export const homeKeyboard = () => new InlineKeyboard().text(go("🚀 Launch a co
 export const HELP_TEXT = [
   "<b>How LINKR works</b>",
   "",
-  `Every trade of your coin pays ${CREATOR_FEE_PCT}% into its vault. The vault buys the tokenised stocks you picked and pays them to holders, weighted by how much they hold and for how long.`,
+  "Your coin's trading fees buy the tokenised stocks you pick, and they're airdropped to holders, weighted by how much they hold and for how long.",
   "",
   "/launch  create a coin in nine steps",
   "/wallet  deposit, withdraw or export your bot wallet",
   "/coins  the coins you launched",
   "/cancel  drop the draft you're working on",
   "",
-  BETA_NOTE,
+  RISK_NOTE,
 ].join("\n");

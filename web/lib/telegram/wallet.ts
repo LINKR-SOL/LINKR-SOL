@@ -15,7 +15,7 @@ import { autoClaimPolicy } from "../indexer/dividendKeeper";
 import { background } from "./background";
 import { userWallet } from "./wallets";
 import type { BotContext, Toast } from "./context";
-import { BETA_NOTE, HTML, buttonableUrl, code, coinLine, esc, go, homeKeyboard, link, shortAddr, stop, vaultUrl } from "./ui";
+import { RISK_NOTE, HTML, buttonableUrl, code, coinLine, esc, go, homeKeyboard, link, shortAddr, stop, vaultUrl } from "./ui";
 import { sendBannerCard } from "./cards";
 
 /**
@@ -38,12 +38,12 @@ export async function sendHome(ctx: BotContext): Promise<void> {
     "<b>Every market starts with a reason.</b>",
     "Discover the thesis. Hold the coin. Earn the stocks.",
     "",
-    "Launch a coin around yours. Every trade pays 0.5% into its vault; the vault buys the stocks you pick, like NVDAx or TSLAx, and airdrops them to holders by how much and how long they hold.",
+    "Launch a coin around yours. Its trading fees buy the tokenised stocks you choose and airdrop them to holders, by how much and how long they hold.",
     "",
     `👛 Bot wallet  <b>${formatSol(lamports)}</b>`,
     code(ctx.user.wallet),
     "",
-    BETA_NOTE,
+    RISK_NOTE,
   ].join("\n");
   await sendBannerCard(ctx.api, ctx.chat!.id, caption, homeKeyboard());
 }

@@ -36,8 +36,8 @@ LINKR launches coins on StonkFun around an idea, and pays their holders in the t
 
 <br>
 
-> **Beta.** LINKR is live on Solana mainnet in *custodial* mode and has not been independently audited. Launch and
-> hold with amounts you are comfortable testing with. Every page says so; this README says so too.
+> **Custodial and unaudited.** LINKR is live on Solana mainnet in *custodial* mode and has not been independently
+> audited. Launch and hold with amounts you are comfortable with.
 
 <br>
 
@@ -447,7 +447,7 @@ trust entirely and is the planned upgrade, once the program is rebuilt to read L
 - [x] Indexer, balance streams, dividend keeper, Jupiter / mock swaps
 - [x] Devnet end to end, program mode and custodial mode
 - [x] Custodial mode with on-chain memo commitments and wallet-signed actions
-- [x] **Mainnet, custodial, beta**: 0% platform fee
+- [x] **Mainnet, custodial**: 0% platform fee
 - [x] Telegram launch bot ([@linkrfun_bot](https://t.me/linkrfun_bot)): the same launch, signed by a bot wallet or your own
 - [x] Automatic airdrops: stocks land in holders' wallets each period, nobody claims
 - [x] First real payouts on mainnet (19 Sep 2026): creator fees swapped through Jupiter into AMZNx, CRCLx, HOODx, NVDAx, METAx and SPYx and airdropped to holders

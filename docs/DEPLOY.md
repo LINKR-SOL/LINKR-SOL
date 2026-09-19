@@ -106,7 +106,7 @@ devnet: `NEXT_PUBLIC_VAULT_MODE=custodial`, `BASKET_ALLOWLIST` (real xStocks tic
 `MIN_EPOCH_LENGTH_S=3600`, `NEXT_PUBLIC_SOLANA_CLUSTER=mainnet-beta`, both RPC URLs (Helius), `MONGODB_DB=linkr-mainnet`,
 `KEEPER_PRIVATE_KEY` (base58 of the mainnet keeper), `PROTOCOL_RECIPIENT`, `DIVIDEND_SWAP=jupiter`,
 `DIVIDEND_MIN_HARVEST=0.05` (whole units of the vault's quote token), `DIVIDEND_DUST_UNITS=1000`,
-`DIVIDEND_AUTOCLAIM_DELAY_S=600`, `NEXT_PUBLIC_BETA_NOTICE=1`, fresh `CRON_SECRET` / `ADMIN_SECRET`,
+`DIVIDEND_AUTOCLAIM_DELAY_S=600`, fresh `CRON_SECRET` / `ADMIN_SECRET`,
 `NEXT_PUBLIC_SITE_URL`. Leave `LAUNCHLAB_PLATFORM_ID` unset on mainnet (it defaults to StonkFun's standard platform,
 `4E876qZTE9FJMrBzgVtBrSrzz2TLivB5Y5QXPjB4gZL7`); `LAUNCHLAB_RAISE` is devnet-only.
 
@@ -174,7 +174,5 @@ rather than hand users empty wallets), and never reuse the keeper key for it. Lo
 - Creator fees are an off-chain forward by StonkFun (its platform sets LaunchLab's on-chain creator fee to 0):
   if StonkFun pauses forwarding, harvests pause. Whether the share continues after graduation into the CPMM pool
   is open (`cpmmCreatorFeeOn: 0`) — ask StonkFun.
-- `NEXT_PUBLIC_BETA_NOTICE=0` removes the beta banner once the audit is in — no deploy needed, just redeploy
-  the env.
 - Upgrades: `anchor build --arch v0 && anchor upgrade target/deploy/causa_vault.so --program-id 99n7…` with the
   admin key, then `node scripts/export-idl.mjs` and push.

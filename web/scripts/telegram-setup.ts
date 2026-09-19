@@ -45,7 +45,7 @@ async function main() {
 const BOT_NAME = "LINKR";
 const BOT_SHORT_DESCRIPTION = "Every market starts with a reason. Launch StonkFun coins whose holders earn tokenised stocks.";
 const BOT_DESCRIPTION =
-  "LINKR. Every market starts with a reason.\n\nDiscover the thesis. Hold the coin. Earn the stocks.\n\nLaunch a StonkFun coin from this chat. 0.5% of every trade is converted into the stocks you pick (NVDAx, TSLAx, SPYx…) and airdropped to holders, weighted by balance × time.\n\nBeta. Unaudited and custodial.";
+  "LINKR. Every market starts with a reason.\n\nDiscover the thesis. Hold the coin. Earn the stocks.\n\nLaunch a StonkFun coin from this chat. Its trading fees buy the tokenised stocks you choose and airdrop them to holders, weighted by how much and how long they hold.\n\nUnaudited and custodial: start with small amounts.";
 
 /**
  * Telegram does not follow redirects (an apex → www redirect makes every update fail with 308), so the webhook is

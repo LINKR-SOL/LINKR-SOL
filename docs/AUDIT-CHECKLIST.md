@@ -98,10 +98,10 @@ program mode is deferred until a LaunchLab-aware build. Custodial mode is the su
   forwards the creator's 0.5% off-chain, in the quote token; there is no permissionless collect on mainnet. If
   forwarding pauses, dividends pause. Post-graduation (CPMM) creator fees are unconfirmed (`cpmmCreatorFeeOn: 0`) —
   ask StonkFun.
-- Custodial mode trusts LINKR between harvest and delivery. This is disclosed in the UI (beta notice, vault
+- Custodial mode trusts LINKR between harvest and delivery. This is disclosed in the UI (custodial notice, vault
   page) and is the reason program mode exists.
 
-## Before removing the beta notice
+## Before removing the custodial notice
 
 - Independent review of this checklist's program and custodial sections.
 - Legal review of pro-rata stock distributions in the jurisdictions served.

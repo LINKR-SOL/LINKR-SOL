@@ -9,7 +9,6 @@ import { ensureTokens } from "../api/tokens";
 import { custodialConfig } from "../custody/config";
 import { formatSol, parseAmount } from "../format";
 import {
-  CREATOR_FEE_PCT,
   DESCRIPTION_MAX,
   EPOCH_OPTIONS,
   MAX_BASKET,
@@ -34,7 +33,7 @@ import { logoImage, sendCard } from "./cards";
 import { userWallet } from "./wallets";
 import type { BotContext, Toast } from "./context";
 import {
-  BETA_NOTE,
+  RISK_NOTE,
   HTML,
   STEPS,
   STEP_TITLE,
@@ -698,14 +697,14 @@ export async function sendReview(ctx: BotContext, d: TelegramDraftDoc): Promise<
   const cfg = custodialConfig();
   const wallet = userWallet(d.tgUserId).publicKey;
   const a = await affordability(d, wallet).catch(() => null);
-  const share = cfg.protocolShareBps === 0 ? "LINKR takes 0%." : `LINKR keeps ${cfg.protocolShareBps / 100}%.`;
+  const share = cfg.protocolShareBps === 0 ? "LINKR takes no cut." : `LINKR keeps ${cfg.protocolShareBps / 100}% of the fees.`;
   const lines = [
     coinLine(d),
     hint(esc(clip(d.description!, 200))),
     "",
     "<b>Holders earn</b>",
     basketRows(d),
-    `Every ${fmtDuration(d.epochLength!)}, from ${CREATOR_FEE_PCT}% of every trade. ${share}`,
+    `Every ${fmtDuration(d.epochLength!)}, from the coin's trading fees. ${share}`,
     "",
     `<b>Trades against</b>  ${esc(quote.symbol)}`,
     `<b>First buy</b>  ${d.initialBuy ? `${esc(d.initialBuy)} ${esc(quote.symbol)}` : "none"}`,
@@ -717,7 +716,7 @@ export async function sendReview(ctx: BotContext, d: TelegramDraftDoc): Promise<
     if (a.quoteShort) lines.push(`⚠️ The first buy needs ${esc(a.quoteShort.need)} ${esc(a.quoteShort.symbol)}. The bot wallet holds ${esc(a.quoteShort.held)}.`);
   }
   if (d.vault) lines.push("", hint("The vault is already prepared, so the stocks, payouts and quote token are fixed."));
-  lines.push("", BETA_NOTE);
+  lines.push("", RISK_NOTE);
   const kb = new InlineKeyboard().text(go("🚀 Launch with bot wallet"), `r:bot:${d._id}`).row();
   if (!d.vault) kb.text("🔑 Use my own wallet", `r:wallet:${d._id}`).row();
   kb.text("✏️ Edit", `r:edit:${d._id}`).text(stop("✕ Cancel"), `r:cancel:${d._id}`);
