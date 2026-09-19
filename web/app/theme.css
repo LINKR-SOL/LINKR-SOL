@@ -1,0 +1,168 @@
+/* ============================================================================
+   LINKR — token system (dark canvas default)
+   ----------------------------------------------------------------------------
+   Base tokens only: the LINKR palette, type and surfaces live in linkr.css, which is
+   loaded after this file and overrides them.
+
+   The site runs on the pack's INK canvas everywhere. The paper canvas is kept
+   as an opt-in ([data-canvas="paper"]) for any section that wants a light beat,
+   and [data-canvas="ink"] is retained so existing band markup keeps working —
+   on a dark page it resolves to a sunken ground so bands still read as bands.
+
+   Contrast on --ink (#1e1a1f): soft-white 16.06:1 · slate-light 5.03:1 ·
+   faint 5.72:1 · signal-bright 6.07:1 · positive 7.84:1 · negative 4.81:1.
+   Filled buttons use --accent-cta (#d6320e) so Soft White clears 4.5:1 on them;
+   --signal itself stays exact for markers, rules and the wordmark dot.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* --- Raw brand palette --------------------------------------------------- */
+  --c-paper: #f2ede4;
+  --soft-white: #faf7f1;
+  --sand: #d8ccbc;
+  --c-ink: #1e1a1f;
+  --plum: #2a1f2e;
+  --slate: #8b858c;
+  --signal: #f25a38;
+  --signal-bright: #ff6b3d;
+
+  --positive: #6dbf9c;
+  --negative: #c86e68;
+  --neutral: #8b858c;
+
+  /* Paper-safe text variants (used only inside [data-canvas="paper"]) */
+  --slate-ink: #655f66;
+  --signal-ink: #c9300d;
+  --positive-ink: #34765a;
+  --negative-ink: #b24841;
+  --slate-light: #8f8990;
+
+  /* --- Semantics: INK canvas (default) ------------------------------------ */
+  --bg: var(--c-ink);
+  --bg-raised: var(--plum);
+  --bg-sunken: #171319;
+  --bg-band: #151118;
+  --fg: var(--soft-white);
+  --fg-strong: #ffffff;
+  --fg-muted: var(--slate-light);
+  --fg-faint: #99939a;
+  --border: rgba(250, 247, 241, 0.14);
+  --border-strong: rgba(250, 247, 241, 0.26);
+  --border-faint: rgba(250, 247, 241, 0.08);
+
+  --accent: var(--signal);
+  --accent-text: var(--signal-bright);
+  --accent-wash: rgba(242, 90, 56, 0.16);
+  --accent-line: rgba(255, 107, 61, 0.4);
+  --on-accent: var(--soft-white);
+  --accent-cta: #d6320e;
+
+  --pos: var(--positive);
+  --neg: var(--negative);
+  --pos-wash: rgba(109, 191, 156, 0.14);
+  --neg-wash: rgba(200, 110, 104, 0.14);
+
+  --chart-canvas: #131416;
+  --chart-grid: rgba(255, 255, 255, 0.06);
+
+  /* --- Type: serif = idea, sans = market, mono = system -------------------- */
+  --display: var(--font-instrument-serif), "Instrument Serif", "Times New Roman", serif;
+  --sans: var(--font-geist), "Geist", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --mono: var(--font-geist-mono), "Geist Mono", ui-monospace, "SF Mono", Consolas, monospace;
+
+  --t-display-xl: clamp(64px, 9vw, 144px);
+  --t-display-l: clamp(52px, 7vw, 104px);
+  --t-h1: clamp(42px, 5.2vw, 80px);
+  --t-h2: clamp(34px, 4vw, 64px);
+  --t-h3: clamp(26px, 2.4vw, 40px);
+  --t-body-l: 20px;
+  --t-body: 16px;
+  --t-ui: 14px;
+  --t-meta: 12px;
+  --t-micro: 10px;
+
+  /* --- Space / layout ------------------------------------------------------ */
+  --content: 1280px;
+  --gutter: clamp(20px, 4vw, 56px);
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px;
+  --s-12: 48px; --s-16: 64px; --s-20: 80px; --s-24: 96px; --s-32: 128px;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+
+  /* Dark elevation = rim light on the top edge + deep cast shadow. */
+  --rim: inset 0 1px 0 rgba(250, 247, 241, 0.07);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 14px 40px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 34px 90px rgba(0, 0, 0, 0.65);
+
+  /* --- Motion tokens (04_MOTION_SYSTEM §4) -------------------------------- */
+  --d-instant: 120ms;
+  --d-fast: 180ms;
+  --d-standard: 260ms;
+  --d-medium: 420ms;
+  --d-slow: 700ms;
+  --d-cinematic: 1200ms;
+  --ease-ui: cubic-bezier(0.2, 0.8, 0.3, 1);
+  --ease-editorial: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-data: linear;
+}
+
+/* Bands on an already-dark page: same semantics, sunken ground. */
+[data-canvas="ink"] {
+  --bg: var(--bg-band);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Opt-in light beat. */
+[data-canvas="paper"] {
+  color-scheme: light;
+  --bg: var(--c-paper);
+  --bg-raised: var(--soft-white);
+  --bg-sunken: #eae3d7;
+  --fg: var(--c-ink);
+  --fg-strong: #120f13;
+  --fg-muted: var(--slate-ink);
+  --fg-faint: #6b656c;
+  --border: var(--sand);
+  --border-strong: #c3b5a2;
+  --border-faint: rgba(30, 26, 31, 0.08);
+  --accent-text: var(--signal-ink);
+  --accent-wash: rgba(242, 90, 56, 0.1);
+  --accent-line: rgba(242, 90, 56, 0.34);
+  --pos: var(--positive-ink);
+  --neg: var(--negative-ink);
+  --rim: none;
+  --shadow-sm: 0 1px 2px rgba(30, 26, 31, 0.06);
+  --shadow-md: 0 12px 32px rgba(30, 26, 31, 0.1);
+  --shadow-lg: 0 28px 70px rgba(30, 26, 31, 0.14);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* ---------------------------------------------------------------------------
+   Texture primitives. Static, under content.
+   ------------------------------------------------------------------------- */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --d-instant: 1ms; --d-fast: 1ms; --d-standard: 1ms;
+    --d-medium: 1ms; --d-slow: 1ms; --d-cinematic: 1ms;
+  }
+}

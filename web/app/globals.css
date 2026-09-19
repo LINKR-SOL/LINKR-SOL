@@ -1,0 +1,211 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+/* Utilities resolve to the same semantic tokens the hand-written CSS uses, so a
+   utility-class page and a component page cannot drift. Because the semantics are
+   re-declared under [data-canvas="ink"], a `bg-surface` inside a dark band is
+   automatically the dark surface — no dark: variants anywhere. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--bg-raised);
+  --color-surface-2: var(--bg-sunken);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-text: var(--fg);
+  --color-text-strong: var(--fg-strong);
+  --color-muted: var(--fg-muted);
+  --color-faint: var(--fg-faint);
+
+  --color-accent: var(--accent-text);   /* text-accent must be readable; fills use .btn-primary */
+  --color-accent-text: var(--accent-text);
+  --color-accent-soft: var(--accent-wash);
+  --color-on-accent: var(--on-accent);
+
+  --color-pos: var(--pos);
+  --color-neg: var(--neg);
+  --color-success: var(--pos);
+  --color-danger: var(--neg);
+  --color-warn: var(--accent);
+  --color-success-soft: var(--pos-wash);
+  --color-danger-soft: var(--neg-wash);
+  --color-warn-soft: var(--accent-wash);
+
+  /* Retained so pre-existing utility classes keep resolving. */
+  --color-surface-3: var(--bg-sunken);
+  --color-accent-strong: var(--accent-text);
+  --color-accent-hot: var(--accent);
+  --color-night: var(--c-ink);
+
+  --font-sans: var(--sans);
+  --font-mono: var(--mono);
+  --font-serif: var(--display);
+
+  --radius-card: var(--radius-lg);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Market numbers must line up column to column. */
+.num,
+.tabular {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+input[type="range"] {
+  accent-color: var(--accent);
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--soft-white);
+}
+
+dialog::backdrop {
+  background: rgba(30, 26, 31, 0.55);
+  backdrop-filter: blur(5px);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-sunken) 25%, var(--border) 50%, var(--bg-sunken) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: var(--radius-sm);
+}
+
+/* --- Info tooltips ("i" next to a term) --- */
+.info {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+}
+.info__btn {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin: -4px 0;
+  border-radius: 999px;
+  color: var(--fg-faint);
+  cursor: help;
+  transition: color 150ms var(--ease-out), background-color 150ms var(--ease-out);
+}
+.info__btn:hover,
+.info__btn:focus-visible,
+.info[data-open] .info__btn {
+  color: var(--fg);
+  background: var(--bg-sunken);
+}
+.info__btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.info__tip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translate(-50%, 4px);
+  width: max-content;
+  max-width: min(280px, 80vw);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  text-align: left;
+  white-space: normal;
+  box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 40;
+  transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out);
+}
+.info[data-align="start"] .info__tip {
+  left: -6px;
+  transform: translate(0, 4px);
+}
+.info[data-align="end"] .info__tip {
+  left: auto;
+  right: -6px;
+  transform: translate(0, 4px);
+}
+.info[data-side="bottom"] .info__tip {
+  bottom: auto;
+  top: calc(100% + 6px);
+  transform: translate(-50%, -4px);
+}
+.info[data-side="bottom"][data-align="start"] .info__tip,
+.info[data-side="bottom"][data-align="end"] .info__tip {
+  transform: translate(0, -4px);
+}
+.info:hover .info__tip,
+.info__btn:focus-visible + .info__tip,
+.info[data-open] .info__tip {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+.info[data-align="start"]:hover .info__tip,
+.info[data-align="start"] .info__btn:focus-visible + .info__tip,
+.info[data-align="start"][data-open] .info__tip,
+.info[data-align="end"]:hover .info__tip,
+.info[data-align="end"] .info__btn:focus-visible + .info__tip,
+.info[data-align="end"][data-open] .info__tip {
+  transform: translate(0, 0);
+}
+
+/* --- Payout clock: the dot for the stage that is happening right now --- */
+@keyframes clock-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 50%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 9px transparent;
+  }
+}
+.clock-dot--active {
+  animation: clock-pulse 1.6s var(--ease-out) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .info__tip {
+    transition: opacity 100ms linear;
+  }
+  .clock-dot--active {
+    animation: none;
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 35%, transparent);
+  }
+}

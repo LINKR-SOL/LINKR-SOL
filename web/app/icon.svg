@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
+  <title>LINKR</title>
+  <rect width="96" height="96" rx="22" fill="#F5F9FF"/>
+  <defs>
+    <linearGradient id="body" x1="8" y1="73" x2="75" y2="15" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0062F4"/><stop offset=".13" stop-color="#07172F"/>
+      <stop offset=".43" stop-color="#081222"/><stop offset=".64" stop-color="#0A3260"/>
+      <stop offset=".82" stop-color="#101726"/><stop offset="1" stop-color="#FF922F"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="22" y1="12" x2="60" y2="80" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#AADFFF"/><stop offset=".16" stop-color="#1284FF"/>
+      <stop offset=".35" stop-color="#042653"/><stop offset=".65" stop-color="#529EFF"/>
+      <stop offset="1" stop-color="#0047B7"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="69" y1="12" x2="73" y2="34" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFCC83"/><stop offset=".5" stop-color="#F88A23"/>
+      <stop offset="1" stop-color="#F88A23" stop-opacity="0"/>
+    </linearGradient>
+    <path id="upper" d="M34 24V21Q34 11 44 11H64Q74 11 74 21V44Q74 54 64 54H47Q37 54 37 44V36"/>
+    <path id="lower" d="M52 65V68Q52 78 42 78H22Q12 78 12 68V45Q12 35 22 35H39Q49 35 49 45V53"/>
+  </defs>
+  <g transform="translate(4 3)" stroke-linejoin="round">
+    <use href="#upper" stroke="#06172C" stroke-width="13"/>
+    <use href="#upper" stroke="url(#rim)" stroke-width="11.5"/>
+    <use href="#upper" stroke="url(#body)" stroke-width="8.5"/>
+    <path d="M37 22V21Q37 14 44 14H62" stroke="#A4DAFF" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M65 6Q79 7 79 21V34" stroke="url(#warm)" stroke-width="1.8" stroke-linecap="round"/>
+    <use href="#lower" stroke="#06172C" stroke-width="13"/>
+    <use href="#lower" stroke="url(#rim)" stroke-width="11.5"/>
+    <use href="#lower" stroke="url(#body)" stroke-width="8.5"/>
+    <path d="M15 47V45Q15 38 22 38H37Q46 38 46 46" stroke="#9AD9FF" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M8 59V68Q8 82 22 82H35" stroke="#197DF8" stroke-width="1.3" stroke-linecap="round"/>
+  </g>
+</svg>

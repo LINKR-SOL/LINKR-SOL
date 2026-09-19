@@ -1,0 +1,3212 @@
+{
+  "address": "99n7VGd6132b4UUwhSezLm9xXssdnJFiSPrEKkCuMHPF",
+  "metadata": {
+    "name": "causa_vault",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "accept_admin",
+      "discriminator": [
+        112,
+        42,
+        45,
+        90,
+        116,
+        181,
+        13,
+        170
+      ],
+      "accounts": [
+        {
+          "name": "pending_admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "allow_basket_mint",
+      "discriminator": [
+        179,
+        106,
+        97,
+        161,
+        247,
+        253,
+        56,
+        174
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "basket",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  97,
+                  115,
+                  107,
+                  101,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "bind_launch",
+      "discriminator": [
+        232,
+        218,
+        212,
+        235,
+        181,
+        237,
+        215,
+        108
+      ],
+      "accounts": [
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault.creator",
+                "account": "Vault"
+              },
+              {
+                "kind": "account",
+                "path": "vault.salt",
+                "account": "Vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "bonding_curve"
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "cancel_epoch",
+      "discriminator": [
+        120,
+        226,
+        234,
+        25,
+        215,
+        85,
+        0,
+        155
+      ],
+      "accounts": [
+        {
+          "name": "caller",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault.creator",
+                "account": "Vault"
+              },
+              {
+                "kind": "account",
+                "path": "vault.salt",
+                "account": "Vault"
+              }
+            ]
+          },
+          "relations": [
+            "epoch"
+          ]
+        },
+        {
+          "name": "epoch",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  112,
+                  111,
+                  99,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "epoch.id",
+                "account": "Epoch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "claim",
+      "discriminator": [
+        62,
+        198,
+        214,
+        193,
+        213,
+        159,
+        108,
+        210
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault.creator",
+                "account": "Vault"
+              },
+              {
+                "kind": "account",
+                "path": "vault.salt",
+                "account": "Vault"
+              }
+            ]
+          },
+          "relations": [
+            "epoch"
+          ]
+        },
+        {
+          "name": "epoch",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  112,
+                  111,
+                  99,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "arg",
+                "path": "params.epoch_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "account"
+        },
+        {
+          "name": "claim_status",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  108,
+                  97,
+                  105,
+                  109
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "epoch"
+              },
+              {
+                "kind": "account",
+                "path": "account"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "ClaimParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_vault",
+      "discriminator": [
+        29,
+        237,
+        247,
+        208,
+        193,
+        82,
+        54,
+        135
+      ],
+      "accounts": [
+        {
+          "name": "creator",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "creator"
+              },
+              {
+                "kind": "arg",
+                "path": "params.salt"
+              }
+            ]
+          }
+        },
+        {
+          "name": "quote_mint",
+          "address": "So11111111111111111111111111111111111111112"
+        },
+        {
+          "name": "vault_quote_ata",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "quote_token_program"
+              },
+              {
+                "kind": "account",
+                "path": "quote_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "quote_token_program"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "CreateVaultParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "expire_epoch",
+      "discriminator": [
+        62,
+        0,
+        93,
+        101,
+        17,
+        210,
+        169,
+        64
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault.creator",
+                "account": "Vault"
+              },
+              {
+                "kind": "account",
+                "path": "vault.salt",
+                "account": "Vault"
+              }
+            ]
+          },
+          "relations": [
+            "epoch"
+          ]
+        },
+        {
+          "name": "epoch",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  112,
+                  111,
+                  99,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "epoch.id",
+                "account": "Epoch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "harvest_intake",
+      "discriminator": [
+        55,
+        123,
+        51,
+        162,
+        94,
+        26,
+        210,
+        27
+      ],
+      "accounts": [
+        {
+          "name": "caller",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault.creator",
+                "account": "Vault"
+              },
+              {
+                "kind": "account",
+                "path": "vault.salt",
+                "account": "Vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "quote_mint"
+        },
+        {
+          "name": "vault_quote_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "quote_token_program"
+              },
+              {
+                "kind": "account",
+                "path": "quote_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "protocol_quote_ata",
+          "writable": true
+        },
+        {
+          "name": "quote_token_program"
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "max_input",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "init_config",
+      "discriminator": [
+        23,
+        235,
+        115,
+        232,
+        168,
+        96,
+        1,
+        231
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "InitConfigParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "publish_epoch",
+      "discriminator": [
+        222,
+        6,
+        136,
+        82,
+        54,
+        246,
+        245,
+        120
+      ],
+      "accounts": [
+        {
+          "name": "operator",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault.creator",
+                "account": "Vault"
+              },
+              {
+                "kind": "account",
+                "path": "vault.salt",
+                "account": "Vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "epoch",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "PublishEpochParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "rescue",
+      "discriminator": [
+        42,
+        111,
+        16,
+        88,
+        147,
+        101,
+        209,
+        62
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault.creator",
+                "account": "Vault"
+              },
+              {
+                "kind": "account",
+                "path": "vault.salt",
+                "account": "Vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "vault_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "creator_ata",
+          "writable": true
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "revoke_basket_mint",
+      "discriminator": [
+        59,
+        239,
+        108,
+        217,
+        7,
+        109,
+        96,
+        225
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "basket",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  97,
+                  115,
+                  107,
+                  101,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "basket.mint",
+                "account": "AllowedBasketMint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "set_auto_claim",
+      "discriminator": [
+        135,
+        111,
+        55,
+        239,
+        20,
+        249,
+        33,
+        144
+      ],
+      "accounts": [
+        {
+          "name": "creator",
+          "signer": true,
+          "relations": [
+            "vault"
+          ]
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault.creator",
+                "account": "Vault"
+              },
+              {
+                "kind": "account",
+                "path": "vault.salt",
+                "account": "Vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "enabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "swap_begin",
+      "discriminator": [
+        87,
+        236,
+        193,
+        120,
+        215,
+        245,
+        9,
+        37
+      ],
+      "accounts": [
+        {
+          "name": "operator",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault.creator",
+                "account": "Vault"
+              },
+              {
+                "kind": "account",
+                "path": "vault.salt",
+                "account": "Vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "quote_mint"
+        },
+        {
+          "name": "vault_quote_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "quote_token_program"
+              },
+              {
+                "kind": "account",
+                "path": "quote_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "operator_quote_ata",
+          "writable": true
+        },
+        {
+          "name": "leg_mint"
+        },
+        {
+          "name": "vault_leg_ata",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "leg_token_program"
+              },
+              {
+                "kind": "account",
+                "path": "leg_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "leg_token_program"
+        },
+        {
+          "name": "quote_token_program"
+        },
+        {
+          "name": "instructions_sysvar",
+          "address": "Sysvar1nstructions1111111111111111111111111"
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "leg",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "swap_settle",
+      "discriminator": [
+        201,
+        181,
+        97,
+        21,
+        167,
+        157,
+        235,
+        126
+      ],
+      "accounts": [
+        {
+          "name": "operator",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault.creator",
+                "account": "Vault"
+              },
+              {
+                "kind": "account",
+                "path": "vault.salt",
+                "account": "Vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "leg_mint"
+        },
+        {
+          "name": "vault_leg_ata",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "leg_token_program"
+              },
+              {
+                "kind": "account",
+                "path": "leg_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "leg_token_program"
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "leg",
+          "type": "u8"
+        },
+        {
+          "name": "min_out",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "transfer_admin",
+      "discriminator": [
+        42,
+        242,
+        66,
+        106,
+        228,
+        10,
+        111,
+        156
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "new_admin",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "update_config",
+      "discriminator": [
+        29,
+        158,
+        252,
+        191,
+        10,
+        83,
+        219,
+        99
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "UpdateConfigParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "wrap_fees",
+      "discriminator": [
+        51,
+        143,
+        228,
+        150,
+        69,
+        84,
+        185,
+        16
+      ],
+      "accounts": [
+        {
+          "name": "caller",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault.creator",
+                "account": "Vault"
+              },
+              {
+                "kind": "account",
+                "path": "vault.salt",
+                "account": "Vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "quote_mint"
+        },
+        {
+          "name": "vault_quote_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "quote_token_program"
+              },
+              {
+                "kind": "account",
+                "path": "quote_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "quote_token_program"
+        },
+        {
+          "name": "event_authority"
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": [],
+      "returns": "u64"
+    }
+  ],
+  "accounts": [
+    {
+      "name": "AllowedBasketMint",
+      "discriminator": [
+        6,
+        197,
+        9,
+        150,
+        234,
+        235,
+        217,
+        218
+      ]
+    },
+    {
+      "name": "ClaimStatus",
+      "discriminator": [
+        22,
+        183,
+        249,
+        157,
+        247,
+        95,
+        150,
+        96
+      ]
+    },
+    {
+      "name": "Config",
+      "discriminator": [
+        155,
+        12,
+        170,
+        224,
+        30,
+        250,
+        204,
+        130
+      ]
+    },
+    {
+      "name": "Epoch",
+      "discriminator": [
+        93,
+        83,
+        120,
+        89,
+        151,
+        138,
+        152,
+        108
+      ]
+    },
+    {
+      "name": "Vault",
+      "discriminator": [
+        211,
+        8,
+        232,
+        43,
+        2,
+        152,
+        117,
+        119
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "AutoClaimUpdated",
+      "discriminator": [
+        177,
+        243,
+        206,
+        188,
+        16,
+        108,
+        228,
+        15
+      ]
+    },
+    {
+      "name": "BasketMintUpdated",
+      "discriminator": [
+        24,
+        139,
+        152,
+        132,
+        187,
+        34,
+        152,
+        42
+      ]
+    },
+    {
+      "name": "Claimed",
+      "discriminator": [
+        217,
+        192,
+        123,
+        72,
+        108,
+        150,
+        248,
+        33
+      ]
+    },
+    {
+      "name": "ConfigUpdated",
+      "discriminator": [
+        40,
+        241,
+        230,
+        122,
+        11,
+        19,
+        198,
+        194
+      ]
+    },
+    {
+      "name": "EpochCancelled",
+      "discriminator": [
+        207,
+        234,
+        62,
+        125,
+        97,
+        159,
+        190,
+        48
+      ]
+    },
+    {
+      "name": "EpochExpired",
+      "discriminator": [
+        100,
+        30,
+        119,
+        234,
+        71,
+        13,
+        47,
+        170
+      ]
+    },
+    {
+      "name": "EpochPublished",
+      "discriminator": [
+        221,
+        95,
+        77,
+        98,
+        203,
+        18,
+        192,
+        225
+      ]
+    },
+    {
+      "name": "Harvested",
+      "discriminator": [
+        249,
+        229,
+        78,
+        151,
+        106,
+        185,
+        149,
+        11
+      ]
+    },
+    {
+      "name": "LaunchBound",
+      "discriminator": [
+        160,
+        163,
+        145,
+        8,
+        136,
+        40,
+        41,
+        97
+      ]
+    },
+    {
+      "name": "Rescued",
+      "discriminator": [
+        121,
+        161,
+        19,
+        44,
+        228,
+        240,
+        254,
+        193
+      ]
+    },
+    {
+      "name": "SwapSettled",
+      "discriminator": [
+        104,
+        192,
+        63,
+        194,
+        238,
+        236,
+        149,
+        85
+      ]
+    },
+    {
+      "name": "VaultCreated",
+      "discriminator": [
+        117,
+        25,
+        120,
+        254,
+        75,
+        236,
+        78,
+        115
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Unauthorized",
+      "msg": "Unauthorized"
+    },
+    {
+      "code": 6001,
+      "name": "Paused",
+      "msg": "Program is paused"
+    },
+    {
+      "code": 6002,
+      "name": "ProtocolShareTooHigh",
+      "msg": "Protocol share above the 20% cap"
+    },
+    {
+      "code": 6003,
+      "name": "DisputeWindowTooLong",
+      "msg": "Dispute window must be shorter than the minimum epoch length"
+    },
+    {
+      "code": 6004,
+      "name": "BasketLength",
+      "msg": "Basket must have 1 to 10 legs"
+    },
+    {
+      "code": 6005,
+      "name": "MintNotAllowed",
+      "msg": "Basket mint is not on the allowlist"
+    },
+    {
+      "code": 6006,
+      "name": "DuplicateMint",
+      "msg": "Duplicate basket mint"
+    },
+    {
+      "code": 6007,
+      "name": "WeightsMustSum",
+      "msg": "Basket weights must be non-zero and sum to 10000"
+    },
+    {
+      "code": 6008,
+      "name": "EpochLengthTooShort",
+      "msg": "Epoch length below the minimum"
+    },
+    {
+      "code": 6009,
+      "name": "AlreadyBound",
+      "msg": "Vault is already bound to a launch"
+    },
+    {
+      "code": 6010,
+      "name": "NotBound",
+      "msg": "Vault is not bound to a launch yet"
+    },
+    {
+      "code": 6011,
+      "name": "NotPumpAccount",
+      "msg": "Bonding curve account is not owned by the pump program"
+    },
+    {
+      "code": 6012,
+      "name": "WrongBondingCurve",
+      "msg": "Bonding curve does not belong to the expected mint"
+    },
+    {
+      "code": 6013,
+      "name": "WrongCreator",
+      "msg": "Launch creator is not this vault"
+    },
+    {
+      "code": 6014,
+      "name": "NothingToHarvest",
+      "msg": "Nothing to harvest"
+    },
+    {
+      "code": 6015,
+      "name": "SwapInFlight",
+      "msg": "A swap is already in flight"
+    },
+    {
+      "code": 6016,
+      "name": "NoSwapInFlight",
+      "msg": "No swap in flight"
+    },
+    {
+      "code": 6017,
+      "name": "SettleNotInTransaction",
+      "msg": "swap_begin must be followed by swap_settle in the same transaction"
+    },
+    {
+      "code": 6018,
+      "name": "BadLeg",
+      "msg": "Leg index out of range"
+    },
+    {
+      "code": 6019,
+      "name": "NothingToSwap",
+      "msg": "Leg has nothing pending to swap"
+    },
+    {
+      "code": 6020,
+      "name": "InsufficientOutput",
+      "msg": "Swap output below minimum"
+    },
+    {
+      "code": 6021,
+      "name": "WrongLegAccount",
+      "msg": "Basket account does not match the leg"
+    },
+    {
+      "code": 6022,
+      "name": "PeriodMismatch",
+      "msg": "Epoch period must start where the previous one ended"
+    },
+    {
+      "code": 6023,
+      "name": "InvalidPeriod",
+      "msg": "Invalid epoch period"
+    },
+    {
+      "code": 6024,
+      "name": "LengthMismatch",
+      "msg": "Length mismatch"
+    },
+    {
+      "code": 6025,
+      "name": "InsufficientUnallocated",
+      "msg": "Not enough unallocated tokens for this epoch"
+    },
+    {
+      "code": 6026,
+      "name": "EpochNotOpen",
+      "msg": "Epoch is not open"
+    },
+    {
+      "code": 6027,
+      "name": "EpochNotCancellable",
+      "msg": "Only the latest epoch can be cancelled, and only before it becomes claimable"
+    },
+    {
+      "code": 6028,
+      "name": "EpochNotExpirable",
+      "msg": "Epoch claim window has not closed yet"
+    },
+    {
+      "code": 6029,
+      "name": "EpochNotClaimable",
+      "msg": "Epoch is not claimable yet"
+    },
+    {
+      "code": 6030,
+      "name": "InvalidProof",
+      "msg": "Invalid Merkle proof"
+    },
+    {
+      "code": 6031,
+      "name": "EpochOverclaim",
+      "msg": "Claim exceeds the epoch's declared amount for this token"
+    },
+    {
+      "code": 6032,
+      "name": "NothingPending",
+      "msg": "Nothing pending for this account and mint"
+    },
+    {
+      "code": 6033,
+      "name": "TokenNotRescuable",
+      "msg": "Basket and quote balances can never be rescued"
+    },
+    {
+      "code": 6034,
+      "name": "Overflow",
+      "msg": "Arithmetic overflow"
+    }
+  ],
+  "types": [
+    {
+      "name": "AllowedBasketMint",
+      "docs": [
+        "Marker: this mint may be a basket leg. PDA [\"basket\", mint]."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_program",
+            "type": "pubkey"
+          },
+          {
+            "name": "decimals",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AutoClaimUpdated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "enabled",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BasketMintUpdated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "allowed",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ClaimParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "amounts",
+            "docs": [
+              "Per epoch leg, in basket order."
+            ],
+            "type": {
+              "vec": "u64"
+            }
+          },
+          {
+            "name": "proof",
+            "type": {
+              "vec": {
+                "array": [
+                  "u8",
+                  32
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ClaimStatus",
+      "docs": [
+        "Existence = claimed. PDA [\"claim\", epoch, account]."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "epoch",
+            "type": "pubkey"
+          },
+          {
+            "name": "account",
+            "type": "pubkey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Claimed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "account",
+            "type": "pubkey"
+          },
+          {
+            "name": "amounts",
+            "type": {
+              "vec": "u64"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Config",
+      "docs": [
+        "Protocol-wide configuration (the old DividendVaultFactory storage). One per program."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "pending_admin",
+            "docs": [
+              "Two-step admin transfer; `Pubkey::default()` when none is pending."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "operator",
+            "docs": [
+              "The keeper. Harvests, settles swaps, publishes roots, delivers claims."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "protocol_share_bps",
+            "type": "u16"
+          },
+          {
+            "name": "protocol_recipient",
+            "type": "pubkey"
+          },
+          {
+            "name": "dispute_window",
+            "docs": [
+              "Seconds after `publish_epoch` during which the creator or admin may cancel it."
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "claim_window",
+            "docs": [
+              "Seconds after `claimable_at` before anyone may expire the epoch."
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "min_epoch_length",
+            "type": "u32"
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          },
+          {
+            "name": "vault_count",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigUpdated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "operator",
+            "type": "pubkey"
+          },
+          {
+            "name": "protocol_share_bps",
+            "type": "u16"
+          },
+          {
+            "name": "protocol_recipient",
+            "type": "pubkey"
+          },
+          {
+            "name": "dispute_window",
+            "type": "u32"
+          },
+          {
+            "name": "claim_window",
+            "type": "u32"
+          },
+          {
+            "name": "min_epoch_length",
+            "type": "u32"
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CreateVaultParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "salt",
+            "type": "u64"
+          },
+          {
+            "name": "weights_bps",
+            "type": {
+              "vec": "u16"
+            }
+          },
+          {
+            "name": "epoch_length",
+            "type": "u32"
+          },
+          {
+            "name": "expected_mint",
+            "docs": [
+              "The pump mint the creator will launch with this vault as `creator`."
+            ],
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Epoch",
+      "docs": [
+        "One payout epoch. PDA [\"epoch\", vault, id]."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "root",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "period_start",
+            "type": "i64"
+          },
+          {
+            "name": "period_end",
+            "type": "i64"
+          },
+          {
+            "name": "claimable_at",
+            "type": "i64"
+          },
+          {
+            "name": "holder_count",
+            "type": "u32"
+          },
+          {
+            "name": "status",
+            "type": {
+              "defined": {
+                "name": "EpochStatus"
+              }
+            }
+          },
+          {
+            "name": "legs",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "EpochLeg"
+                }
+              }
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EpochCancelled",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "epoch_id",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EpochExpired",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "returned",
+            "type": {
+              "vec": "u64"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "EpochLeg",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "claimed_total",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EpochPublished",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "epoch",
+            "type": "pubkey"
+          },
+          {
+            "name": "epoch_id",
+            "type": "u64"
+          },
+          {
+            "name": "root",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "period_start",
+            "type": "i64"
+          },
+          {
+            "name": "period_end",
+            "type": "i64"
+          },
+          {
+            "name": "claimable_at",
+            "type": "i64"
+          },
+          {
+            "name": "mints",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "amounts",
+            "type": {
+              "vec": "u64"
+            }
+          },
+          {
+            "name": "holder_count",
+            "type": "u32"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EpochStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Open"
+          },
+          {
+            "name": "Cancelled"
+          },
+          {
+            "name": "Expired"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Harvested",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "caller",
+            "type": "pubkey"
+          },
+          {
+            "name": "input",
+            "type": "u64"
+          },
+          {
+            "name": "protocol_cut",
+            "type": "u64"
+          },
+          {
+            "name": "leg_inputs",
+            "docs": [
+              "Per leg: quote reserved for swapping (or credited directly when the leg is the quote mint)."
+            ],
+            "type": {
+              "vec": "u64"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "InitConfigParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "operator",
+            "type": "pubkey"
+          },
+          {
+            "name": "protocol_share_bps",
+            "type": "u16"
+          },
+          {
+            "name": "protocol_recipient",
+            "type": "pubkey"
+          },
+          {
+            "name": "dispute_window",
+            "type": "u32"
+          },
+          {
+            "name": "claim_window",
+            "type": "u32"
+          },
+          {
+            "name": "min_epoch_length",
+            "type": "u32"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LaunchBound",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "bonding_curve",
+            "type": "pubkey"
+          },
+          {
+            "name": "bound_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Leg",
+      "docs": [
+        "One basket leg with its accounting. Invariant per leg (raw units, checked in tests):",
+        "`vault_ata(mint).amount >= unallocated + allocated` (+ every leg's `pending_swap` for the quote mint)."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_program",
+            "type": "pubkey"
+          },
+          {
+            "name": "decimals",
+            "type": "u8"
+          },
+          {
+            "name": "weight_bps",
+            "type": "u16"
+          },
+          {
+            "name": "unallocated",
+            "docs": [
+              "Harvested, not yet assigned to an epoch."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "allocated",
+            "docs": [
+              "Assigned to open epochs, not yet claimed."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "pending_swap",
+            "docs": [
+              "Quote reserved for this leg by `harvest_intake`, consumed by `swap_begin`/`swap_settle`."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "harvested_total",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PublishEpochParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "root",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "amounts",
+            "docs": [
+              "Per basket leg, in basket order (zero for a leg that pays nothing this epoch)."
+            ],
+            "type": {
+              "vec": "u64"
+            }
+          },
+          {
+            "name": "period_start",
+            "type": "i64"
+          },
+          {
+            "name": "period_end",
+            "type": "i64"
+          },
+          {
+            "name": "holder_count",
+            "type": "u32"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Rescued",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "to",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SwapSettled",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "leg",
+            "type": "u8"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount_in",
+            "type": "u64"
+          },
+          {
+            "name": "amount_out",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateConfigParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "operator",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "protocol_share_bps",
+            "type": {
+              "option": "u16"
+            }
+          },
+          {
+            "name": "protocol_recipient",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "dispute_window",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "claim_window",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "min_epoch_length",
+            "type": {
+              "option": "u32"
+            }
+          },
+          {
+            "name": "paused",
+            "type": {
+              "option": "bool"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Vault",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "salt",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "expected_mint",
+            "docs": [
+              "The mint the creator committed to at `create_vault`; `bind_launch` only accepts this one."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "launch_mint",
+            "docs": [
+              "`Pubkey::default()` until bound."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "quote_mint",
+            "docs": [
+              "Creator fees arrive in this mint (wrapped SOL for SOL-quoted coins)."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "quote_token_program",
+            "type": "pubkey"
+          },
+          {
+            "name": "epoch_length",
+            "type": "u32"
+          },
+          {
+            "name": "bound_at",
+            "type": "i64"
+          },
+          {
+            "name": "last_period_end",
+            "type": "i64"
+          },
+          {
+            "name": "epoch_count",
+            "type": "u64"
+          },
+          {
+            "name": "auto_claim",
+            "docs": [
+              "Creator opt-in for keeper-paid delivery."
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "legs",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "Leg"
+                }
+              }
+            }
+          },
+          {
+            "name": "input_total",
+            "type": "u64"
+          },
+          {
+            "name": "protocol_cut_total",
+            "type": "u64"
+          },
+          {
+            "name": "harvest_count",
+            "type": "u64"
+          },
+          {
+            "name": "swap_in_flight",
+            "docs": [
+              "Transient swap session; only ever set inside one transaction (see swap_begin/swap_settle)."
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "swap_leg",
+            "type": "u8"
+          },
+          {
+            "name": "swap_pre_balance",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VaultCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "salt",
+            "type": "u64"
+          },
+          {
+            "name": "expected_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "quote_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "mints",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "weights_bps",
+            "type": {
+              "vec": "u16"
+            }
+          },
+          {
+            "name": "epoch_length",
+            "type": "u32"
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "BASKET_SEED",
+      "type": "bytes",
+      "value": "[98, 97, 115, 107, 101, 116]"
+    },
+    {
+      "name": "BPS",
+      "type": "u16",
+      "value": "10000"
+    },
+    {
+      "name": "CLAIM_SEED",
+      "type": "bytes",
+      "value": "[99, 108, 97, 105, 109]"
+    },
+    {
+      "name": "CONFIG_SEED",
+      "type": "bytes",
+      "value": "[99, 111, 110, 102, 105, 103]"
+    },
+    {
+      "name": "EPOCH_SEED",
+      "type": "bytes",
+      "value": "[101, 112, 111, 99, 104]"
+    },
+    {
+      "name": "MAX_BASKET",
+      "type": "u8",
+      "value": "10"
+    },
+    {
+      "name": "MAX_PROTOCOL_SHARE_BPS",
+      "type": "u16",
+      "value": "2000"
+    },
+    {
+      "name": "VAULT_SEED",
+      "type": "bytes",
+      "value": "[118, 97, 117, 108, 116]"
+    }
+  ]
+}

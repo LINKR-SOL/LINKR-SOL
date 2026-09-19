@@ -1,0 +1,65 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "indexer:local": "node ../scripts/local-cron.mjs 30",
+    "typecheck": "tsc --noEmit",
+    "dev:all": "node ../scripts/dev-all.mjs",
+    "test": "vitest run",
+    "idl:export": "node ../scripts/export-idl.mjs",
+    "stocks:gen": "node ../scripts/gen-stock-tokens.mjs",
+    "e2e:devnet": "tsx scripts/launchlab-e2e.ts",
+    "platform:devnet": "tsx scripts/launchlab-devnet-platform.ts",
+    "telegram:dev": "tsx scripts/telegram-dev.ts",
+    "telegram:setup": "tsx scripts/telegram-setup.ts"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.31.1",
+    "@noble/curves": "^2.4.0",
+    "@noble/hashes": "^2.4.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "@raydium-io/raydium-sdk-v2": "^0.2.67-alpha",
+    "@solana/spl-token": "^0.4.15",
+    "@solana/wallet-adapter-base": "^0.9.27",
+    "@solana/wallet-adapter-react": "^0.15.39",
+    "@solana/wallet-adapter-react-ui": "^0.9.39",
+    "@solana/web3.js": "^1.99.0",
+    "@tanstack/react-query": "^5.102.8",
+    "@vercel/blob": "^2.8.0",
+    "bn.js": "^5.2.5",
+    "bs58": "^6.0.0",
+    "cobe": "^2.0.1",
+    "grammy": "^1.46.0",
+    "lucide-react": "^1.41.0",
+    "mongodb": "^7.6.0",
+    "motion": "^13.2.0",
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "ws": "^8.21.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/bn.js": "^5.2.0",
+    "@types/node": "^22.20.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/ws": "^8.18.1",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.4",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.13",
+    "typescript": "^5",
+    "vitest": "^5.0.0"
+  },
+  "overrides": {
+    "rpc-websockets": {
+      "uuid": "^9.0.1"
+    }
+  }
+}

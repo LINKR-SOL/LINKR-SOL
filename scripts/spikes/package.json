@@ -1,0 +1,24 @@
+{
+  "name": "causa-spikes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "spike1": "tsx 01-pda-creator-devnet.ts",
+    "spike3": "tsx 03-twab-completeness.ts",
+    "spike4": "tsx 04-pumpportal-soak.ts"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.31.1",
+    "@pump-fun/pump-sdk": "^1.36.0",
+    "@pump-fun/pump-swap-sdk": "^1.19.0",
+    "@solana/spl-token": "^0.4.15",
+    "@solana/web3.js": "^1.99.0",
+    "@types/bn.js": "^5.2.0",
+    "@types/ws": "^8.18.1",
+    "bn.js": "^5.2.5",
+    "bs58": "^6.0.0",
+    "tsx": "^4.23.13",
+    "typescript": "^5.9.3",
+    "ws": "^8.21.3"
+  }
+}

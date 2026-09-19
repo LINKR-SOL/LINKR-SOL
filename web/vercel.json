@@ -1,0 +1,20 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/sync",
+      "schedule": "* * * * *"
+    },
+    {
+      "path": "/api/cron/dividends",
+      "schedule": "*/2 * * * *"
+    },
+    {
+      "path": "/api/cron/stonkfun",
+      "schedule": "* * * * *"
+    },
+    {
+      "path": "/api/cron/news",
+      "schedule": "*/5 * * * *"
+    }
+  ]
+}
