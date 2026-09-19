@@ -1,5 +1,6 @@
 import { getFeed, type FeedSort } from "@/lib/stonkfun/live";
 import { json } from "@/lib/serialize";
+import { isHidden } from "@/lib/hidden";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +17,7 @@ export async function GET(req: Request) {
   const limit = Math.min(120, Math.max(1, Number(url.searchParams.get("limit") ?? 60)));
 
   const envelope = await getFeed(sort, limit);
-  const launches = envelope.data?.launches ?? [];
+  const launches = (envelope.data?.launches ?? []).filter((l) => !isHidden(l.mint, l.vault, l.creator));
 
   // Breakdown of what the market is currently pricing coins in.
   const counts = new Map<string, { symbol: string; kind: string; count: number; logoUrl: string | null }>();

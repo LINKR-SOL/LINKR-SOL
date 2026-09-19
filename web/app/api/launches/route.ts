@@ -4,6 +4,7 @@ import { launchToJson } from "@/lib/api/launches";
 import { LaunchInputError } from "@/lib/launch/errors";
 import { recordLaunch, type RecordLaunchInput } from "@/lib/launch/record";
 import { error, json } from "@/lib/serialize";
+import { isHidden } from "@/lib/hidden";
 
 export const dynamic = "force-dynamic";
 
@@ -18,7 +19,7 @@ export async function GET(req: Request) {
     if (creator) filter.creator = creator;
     if (deployer) filter.deployer = deployer;
     const docs = await c.launches.find(filter).sort({ launchedAt: -1 }).limit(Math.min(Number(url.searchParams.get("limit") ?? 50), 200)).toArray();
-    return json({ launches: docs.map((l) => launchToJson(l)) });
+    return json({ launches: docs.filter((l) => !isHidden(l.mint, l.creator)).map((l) => launchToJson(l)) });
   } catch (e) {
     console.error("[launches]", e);
     return error("database unavailable", 503);

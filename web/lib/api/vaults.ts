@@ -12,6 +12,7 @@ import { launchToJson } from "./launches";
 import { getPricesFor } from "../xstocks/prices";
 import { ensureTokens, tokenJson, tokenMap } from "./tokens";
 import { projectionsFor } from "./projection";
+import { isHidden } from "../hidden";
 
 const cluster = activeCluster;
 const programId = VAULT_PROGRAM_KEY;
@@ -126,7 +127,9 @@ export async function listVaults(opts: { creator?: string; mint?: string; limit?
   const filter: Filter<VaultDoc> = { cluster, programId };
   if (opts.creator) filter.creator = opts.creator;
   if (opts.mint) filter.$or = [{ launchMint: opts.mint }, { expectedMint: opts.mint }];
-  const docs = await c.vaults.find(filter).sort({ createdAtSlot: -1 }).limit(Math.min(opts.limit ?? 50, 200)).toArray();
+  const docs = (await c.vaults.find(filter).sort({ createdAtSlot: -1 }).limit(Math.min(opts.limit ?? 50, 200)).toArray()).filter(
+    (v) => !isHidden(v.address, v.launchMint, v.expectedMint),
+  );
   const mints = [...new Set(docs.flatMap(vaultMints))];
   const map = await ensureTokens(mints);
   const px = await stockPrices(mints);
@@ -136,12 +139,13 @@ export async function listVaults(opts: { creator?: string; mint?: string; limit?
 export async function getVault(address: string): Promise<VaultJson | null> {
   const c = await collections();
   const doc = await c.vaults.findOne({ _id: `${cluster}:${address}` });
-  if (!doc || doc.programId !== programId) return null;
+  if (!doc || doc.programId !== programId || isHidden(doc.address, doc.launchMint, doc.expectedMint)) return null;
   await ensureTokens(vaultMints(doc));
   return vaultToJson(doc);
 }
 
 export async function listEpochs(vault: string): Promise<EpochJson[]> {
+  if (isHidden(vault)) return [];
   const c = await collections();
   const docs = await c.epochs.find({ cluster, vault }).sort({ epochId: -1 }).toArray();
   const map = await tokenMap([...new Set(docs.flatMap((e) => e.mints))]);
@@ -156,7 +160,7 @@ export async function listEpochs(vault: string): Promise<EpochJson[]> {
 export async function listHarvests(vault: string, limit = 50): Promise<HarvestJson[]> {
   const c = await collections();
   const v = await c.vaults.findOne({ _id: `${cluster}:${vault}` });
-  if (!v) return [];
+  if (!v || isHidden(v.address, v.launchMint)) return [];
   const [harvests, swaps] = await Promise.all([
     c.harvests.find({ cluster, vault }).sort({ slot: -1 }).limit(Math.min(limit, 200)).toArray(),
     c.swaps.find({ cluster, vault }).sort({ slot: 1 }).toArray(),
@@ -195,7 +199,7 @@ export async function claimsFor(account: string): Promise<ClaimsJson> {
   const leaves = await c.epochLeaves.find({ cluster, account, claimed: false }).toArray();
   const vaultAddrs = [...new Set(leaves.map((l) => l.vault))];
   const claimed = await c.claims.find({ cluster, account }).sort({ timestamp: -1 }).limit(200).toArray();
-  const vaultDocs = await c.vaults.find({ cluster, address: { $in: vaultAddrs } }).toArray();
+  const vaultDocs = (await c.vaults.find({ cluster, address: { $in: vaultAddrs } }).toArray()).filter((v) => !isHidden(v.address, v.launchMint));
   const allMints = [...new Set([...vaultDocs.flatMap(vaultMints), ...claimed.flatMap((cl) => cl.mints)])];
   const map = await tokenMap(allMints);
   const px = await stockPrices(allMints);
@@ -227,7 +231,7 @@ export async function claimsFor(account: string): Promise<ClaimsJson> {
   // What the next payout is shaping up to be. Best-effort: a slow or failing projection must never keep a holder
   // from seeing what is already claimable.
   try {
-    const boundDocs = await c.vaults.find({ cluster, programId, launchMint: { $ne: null } }).toArray();
+    const boundDocs = (await c.vaults.find({ cluster, programId, launchMint: { $ne: null } }).toArray()).filter((v) => !isHidden(v.address, v.launchMint));
     const projMints = [...new Set(boundDocs.flatMap(vaultMints))];
     const projMap = await tokenMap(projMints);
     const projPx = await stockPrices(projMints);
@@ -235,7 +239,7 @@ export async function claimsFor(account: string): Promise<ClaimsJson> {
   } catch (e) {
     console.error("[claims] projection", e);
   }
-  out.history = claimed.map((cl) => ({
+  out.history = claimed.filter((cl) => !isHidden(cl.vault)).map((cl) => ({
     vault: cl.vault,
     epochId: cl.epochId,
     tokens: cl.mints.map((m) => priced(map, px, m)),

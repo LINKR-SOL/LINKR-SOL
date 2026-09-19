@@ -2,6 +2,7 @@ import { epochToJson, leafToJson } from "@/lib/api/vaults";
 import { activeCluster } from "@/lib/solana/cluster";
 import { collections } from "@/lib/db/collections";
 import { error, isBase58Address, json } from "@/lib/serialize";
+import { isHidden } from "@/lib/hidden";
 
 export const dynamic = "force-dynamic";
 
@@ -11,6 +12,7 @@ export async function GET(req: Request, ctx: { params: Promise<{ address: string
   const epochId = Number(id);
   if (!isBase58Address(address)) return error("invalid address");
   if (!Number.isInteger(epochId) || epochId <= 0) return error("invalid epoch id");
+  if (isHidden(address)) return error("epoch not found", 404);
   const q = new URL(req.url).searchParams;
   const limit = Math.min(Number(q.get("limit") ?? 1000), 5000);
   const skip = Math.max(Number(q.get("skip") ?? 0), 0);

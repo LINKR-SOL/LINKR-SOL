@@ -1,5 +1,6 @@
 import { getLiveMarkets, getTrades } from "@/lib/stonkfun/live";
 import { json } from "@/lib/serialize";
+import { isHidden } from "@/lib/hidden";
 
 export const dynamic = "force-dynamic";
 
@@ -14,7 +15,7 @@ export async function GET(req: Request) {
   const limit = Math.min(60, Math.max(1, Number(new URL(req.url).searchParams.get("limit") ?? 24)));
 
   const discovered = await getLiveMarkets(PROBE, WATCH);
-  const coins = discovered.data ?? [];
+  const coins = (discovered.data ?? []).filter((l) => !isHidden(l.mint, l.vault, l.creator));
   if (coins.length === 0) {
     return json({ trades: [], watched: 0, stale: discovered.stale, error: discovered.error, fetchedAt: discovered.fetchedAt });
   }
